@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Countdown Timer</title>
+  </head>
+  <body>
+    <h1>Countdown Timer</h1>
+    <div id="countdown"></div>
+    <button onclick="startTimer()">Start</button>
+    <button onclick="stopTimer()">Stop</button>
+    
+    <script>
+      let countdownDate;
+      let x;
+
+      function startTimer() {
+        // Set the countdown date (2 days from now)
+        countdownDate = new Date().getTime() + (2 * 24 * 60 * 60 * 1000);
+
+        // Update the countdown every second
+        x = setInterval(function() {
+
+          // Get the current time
+          let now = new Date().getTime();
+
+          // Calculate the remaining time in milliseconds
+          let distance = countdownDate - now;
+
+          // Calculate the remaining hours, minutes, and seconds
+          let hours = Math.floor((distance / (1000 * 60 * 60)));
+          let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          // Format the remaining time as a string
+          let timeString = hours + ":" + minutes + ":" + seconds;
+
+          // Display the remaining time in the "countdown" div
+          document.getElementById("countdown").innerHTML = timeString;
+
+          // If the countdown is finished, clear the interval
+          if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "Countdown finished!";
+          }
+        }, 1000);
+      }
+
+      function stopTimer() {
+        clearInterval(x);
+      }
+    </script>
+  </body>
+</html>
