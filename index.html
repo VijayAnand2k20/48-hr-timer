@@ -101,16 +101,9 @@
 let countdownDate;
       let x;
 
-      // Get the countdown date from local storage if it exists
-      if (localStorage.getItem("countdownDate")) {
-        countdownDate = parseInt(localStorage.getItem("countdownDate"));
-      }
-
       function startTimer() {
-        // Set the countdown date (2 days from now) if it hasn't been set yet
-        if (!countdownDate) {
-          countdownDate = new Date().getTime() + (2 * 24 * 60 * 60 * 1000);
-        }
+        // Set the countdown date (2 days from now)
+        countdownDate = new Date().getTime() + (2 * 24 * 60 * 60 * 1000);
 
         // Update the countdown every second
         x = setInterval(function() {
@@ -136,19 +129,13 @@ let countdownDate;
           if (distance < 0) {
             clearInterval(x);
             document.getElementById("countdown").innerHTML = "Countdown finished!";
-            localStorage.removeItem("countdownDate");
-          } else {
-            // Save the countdown date to local storage
-            localStorage.setItem("countdownDate", countdownDate.toString());
           }
         }, 1000);
       }
 
       function stopTimer() {
         clearInterval(x);
-        localStorage.removeItem("countdownDate");
       }
-
 
     </script>
 </body>
