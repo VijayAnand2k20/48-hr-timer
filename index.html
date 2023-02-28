@@ -23,22 +23,16 @@
           <source src="assets/bootstrap/vid/electro.mp4" type="video/mp4">
           <!-- Add more source elements for other video formats here -->
         </video>
-        <div class="hero-content">
-          <!-- Add your hero content here -->
-          <div>
-            <div class="row">
-                <div class="col col-12">
-                    <div class="col col-12 justify-content-center align-items-center align-content-center d-flex" id="countdown" style="margin-top: 250px; margin-bottom: 20px ; color: white; font-size:4rem; font-weight: bold;">Click to start Timer</div>
-                </div>
-                <div class="col col-12 justify-content-center align-items-center align-content-center d-flex">
-                    <button class="btn btn-primary" onclick="startTimer()" type="button" style=" margin-right: 10px;background: white;color: rgb(0,0,0);font-weight: bold;border-color: rgb(255,255,255);">Start</button>
-                    <button class="btn btn-primary" onclick="stopTimer()" type="button" style="background: white;color: rgb(0,0,0);font-weight: bold;border-color: rgb(255,255,255);">Stop</button>
-                </div>
+        <div class="abbb">
+          <h1 id="intro" class="intro" >Click to Start timer</h1>
+          <div class="timee" id="countdown"></div>
+          <div class="col col-12 justify-content-center align-items-center align-content-center d-flex">
+            <div style="margin-top: 100px;" class="butt">
+              <button class="btn btn-primary" onclick="startTimer()" type="button" style=" margin-right: 10px;background: white;color: rgb(0,0,0);font-weight: bold;border-color: rgb(255,255,255);">Start</button>
+            <button class="btn btn-primary" onclick="stopTimer()" type="button" style="background: white;color: rgb(0,0,0);font-weight: bold;border-color: rgb(255,255,255);">Stop</button>
             </div>
+            
         </div>
-            </div>
-             
-            </div>
         </div>
       </section>
       
@@ -102,8 +96,14 @@ let countdownDate;
       let x;
 
       function startTimer() {
+        // get element by id "intro"
+        let intro = document.getElementById("intro");
+
+        // delete the intro text on click
+        
+
         // Set the countdown date (2 days from now)
-        countdownDate = new Date().getTime() + (2 * 24 * 60 * 60 * 1000);
+        countdownDate = new Date().getTime() + (198000*1000)+2000;
 
         // Update the countdown every second
         x = setInterval(function() {
@@ -124,6 +124,10 @@ let countdownDate;
 
           // Display the remaining time in the "countdown" div
           document.getElementById("countdown").innerHTML = timeString;
+
+          
+          intro.style.display = "none";
+          
 
           // If the countdown is finished, clear the interval
           if (distance < 0) {
