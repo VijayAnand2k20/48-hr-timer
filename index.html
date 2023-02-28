@@ -31,8 +31,8 @@
           <div class="timee" id="countdown"></div>
           <div class="col col-12 justify-content-center align-items-center align-content-center d-flex">
             <div style="margin-top: 100px;" class="butt">
-              <button class="btn btn-primary" onclick="startTimer()" type="button" style=" margin-right: 10px;background: white;color: rgb(0,0,0);font-weight: bold;border-color: rgb(255,255,255);">Start/Restart</button>
-            <button class="btn btn-primary" onclick="stopTimer()" type="button" style="background: white;color: rgb(0,0,0);font-weight: bold;border-color: rgb(255,255,255);">Pause</button>
+              <button class="btn btn-primary" id="start" onclick="startTimer()" type="button" style=" margin-right: 10px;background: white;color: rgb(0,0,0);font-weight: bold;border-color: rgb(255,255,255);">Start</button>
+            <!-- <button class="btn btn-primary" onclick="stopTimer()" type="button" style="background: white;color: rgb(0,0,0);font-weight: bold;border-color: rgb(255,255,255);">Pause</button> -->
             </div>
             
         </div>
@@ -98,15 +98,19 @@
 let countdownDate;
       let x;
 
+      // Get the countdown date from local storage if it exists
+      if (localStorage.getItem("countdownDate")) {
+        countdownDate = parseInt(localStorage.getItem("countdownDate"));
+      }
+
       function startTimer() {
-        // get element by id "intro"
-        let intro = document.getElementById("intro");
+        // Set the countdown date (2 days from now) if it hasn't been set yet
+        intro = document.getElementById("intro");
+        start = document.getElementById("start");
 
-        // delete the intro text on click
-        
-
-        // Set the countdown date (2 days from now)
-        countdownDate = new Date().getTime() + (198000*1000)+2000;
+        if (!countdownDate) {
+          countdownDate = new Date().getTime() + (2 * 24 * 60 * 60 * 1000);
+        }
 
         // Update the countdown every second
         x = setInterval(function() {
@@ -128,21 +132,28 @@ let countdownDate;
           // Display the remaining time in the "countdown" div
           document.getElementById("countdown").innerHTML = timeString;
 
-          
-          intro.style.display = "none";
-          
+          intro.remove();
+          start.style.display = "none";
 
           // If the countdown is finished, clear the interval
           if (distance < 0) {
             clearInterval(x);
             document.getElementById("countdown").innerHTML = "Countdown finished!";
+            localStorage.removeItem("countdownDate");
+          } else {
+            // Save the countdown date to local storage
+            localStorage.setItem("countdownDate", countdownDate.toString());
           }
         }, 1000);
       }
 
       function stopTimer() {
         clearInterval(x);
+        localStorage.removeItem("countdownDate");
       }
+
+
+
 
     </script>
 </body>
