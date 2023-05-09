@@ -1,8 +1,42 @@
-.vid{
-    position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    justify-items: center;
-    align-self: center;
+h1{
+
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+
+font-family: "Cabin","Helvetica Neue",Helvetica,Arial,sans-serif;
+font-weight: 700;
+margin: 0 0 35px;
+letter-spacing: 1px;
+text-transform: uppercase;
+color: white;
+width: 500px;
+
 }
+
+.abbb {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+.timee{
+
+    font-family: "Cabin","Helvetica Neue",Helvetica,Arial,sans-serif;
+font-weight: 700;
+font-size: 30px;
+margin: 0 0 35px;
+margin-bottom: 50px;
+letter-spacing: 1px;
+text-transform: uppercase;
+color: white;
+position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    
+}
+
