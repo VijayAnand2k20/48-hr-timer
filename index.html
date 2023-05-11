@@ -109,7 +109,7 @@ let countdownDate;
         start = document.getElementById("start");
 
         if (!countdownDate) {
-          countdownDate = new Date().getTime() + (30 * 60 * 60 * 1000);
+          countdownDate = new Date().getTime() + (27 * 60 * 60 * 1000);
         }
 
         // Update the countdown every second
@@ -138,7 +138,12 @@ let countdownDate;
           // If the countdown is finished, clear the interval
           if (distance < 0) {
             clearInterval(x);
-            document.getElementById("countdown").innerHTML = "Countdown finished!";
+            document.getElementById("countdown").innerHTML = "Countdown finished! Wait, you are getting redirected to announcement page.";
+            // add a waiting time of 5 seconds:
+            setTimeout(function() {
+              window.location.href = "https://kevinkrahul.github.io/rick-roll/"
+            }, 5000);
+            // window.location.href = "https://kevinkrahul.github.io/rick-roll/"
             localStorage.removeItem("countdownDate");
           } else {
             // Save the countdown date to local storage
